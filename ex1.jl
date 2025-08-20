@@ -1,11 +1,14 @@
 ### A Pluto.jl notebook ###
-# v0.20.16
+# v0.20.4
 
 using Markdown
 using InteractiveUtils
 
 # ╔═╡ 0854551f-fc6d-4c51-bf85-a9c7030e588b
-using BenchmarkTools
+begin
+	using BenchmarkTools
+	BenchmarkTools.DEFAULT_PARAMETERS.seconds = 1;
+end;
 
 # ╔═╡ cb099d3d-5c09-4c56-9c59-83adab60f651
 using LinearAlgebra
@@ -487,7 +490,7 @@ md"## Helper code"
 FootnotesNumbered()
 
 # ╔═╡ 5b88a5a8-425b-4ecf-a26a-08722d12ef95
-BenchmarkTools.DEFAULT_PARAMETERS.seconds = 1;
+
 
 # ╔═╡ 9b2cdb77-9330-4a8b-84b5-deed94c19662
 begin
