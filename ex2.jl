@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.16
+# v0.20.4
 
 using Markdown
 using InteractiveUtils
@@ -89,14 +89,14 @@ Based on "An Improved Algorithm due to Laguerre for the Solution of Kepler's Equ
 [Conway, B. A.  (1986) Celestial Mechanics, Volume 39, Issue 2, pp.199-211](https://ui.adsabs.harvard.edu/abs/1986CeMec..39..199C/abstract)
 """
 function update_ecc_anom_laguerre(E::Real, M::Real, ecc::Real)
-  es, ec = ecc.*sincos(E)
-  F = (E-es)-M
-  Fp = one(M)-ec
-  Fpp = es
-  n = 5
-  root = sqrt(abs((n-1)*((n-1)*Fp*Fp-n*F*Fpp)))
-  denom = Fp>zero(E) ? Fp+root : Fp-root
-  return E-n*F/denom
+    es, ec = ecc.*sincos(E)
+    F = (E-es)-M
+    Fp = one(M)-ec
+    Fpp = es
+    n = 5
+    root = sqrt(abs((n-1)*((n-1)*Fp*Fp-n*F*Fpp)))
+    denom = Fp>zero(E) ? Fp+root : Fp-root
+    return E-n*F/denom
 end;
 
 # ╔═╡ d48ca14f-2b62-4f35-8c8a-07aa3563b579
@@ -109,7 +109,7 @@ Optional parameter `tol` specifies tolerance (default 1e-8)
 function calc_ecc_anom(mean_anom::Real, ecc::Real; tol::Real = 1.0e-8)
   	@assert 0 <= ecc < 1.0
 	@assert 1e-16 <= tol < 1
-  	M = rem2pi(mean_anom,RoundNearest)  # Remainder after dividing by 2\pi
+  	M = rem2pi(mean_anom,RoundNearest)  # Remainder after dividing by 2π
     E_old = E = ecc_anom_init_guess_danby(M,ecc)
     max_its_laguerre = 200
     for i in 1:max_its_laguerre
