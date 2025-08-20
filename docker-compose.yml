@@ -1,0 +1,9 @@
+version: '3.6'
+services:
+  notebook:
+    image: jupyter/datascience-notebook
+    volumes:
+      - .:/home/jovyan/work
+    ports:
+      - 8888:8888
+
